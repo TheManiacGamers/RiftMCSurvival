@@ -30,7 +30,6 @@ public class Commands {
     public void onList(CommandContext args, CommandSender sender) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-            exph.updateOnlineList();
             p.sendMessage(String.valueOf(Bukkit.getOnlinePlayers()));
         } else {
             sender.sendMessage(strings.needToBePlayerCMD);

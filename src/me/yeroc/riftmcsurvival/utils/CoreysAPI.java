@@ -2,6 +2,7 @@ package me.yeroc.riftmcsurvival.utils;
 
 import com.sk89q.minecraft.util.commands.ChatColor;
 import me.yeroc.riftmcsurvival.RiftMCSurvival;
+import me.yeroc.riftmcsurvival.managers.PermissionsManager;
 import me.yeroc.riftmcsurvival.managers.StringsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -17,7 +18,8 @@ import java.io.IOException;
 public class CoreysAPI {
     RiftMCSurvival plugin;
     private static CoreysAPI instance = new CoreysAPI();
-    StringsManager strings = StringsManager.getInstance();
+    private StringsManager strings = StringsManager.getInstance();
+    private PermissionsManager perms = PermissionsManager.getInstance();
 
     public CoreysAPI() {
     }

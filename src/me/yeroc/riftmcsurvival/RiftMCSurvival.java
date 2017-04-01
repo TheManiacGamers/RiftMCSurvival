@@ -25,12 +25,12 @@ public class RiftMCSurvival extends JavaPlugin implements Listener {
     private static RiftMCSurvival instance;
     public static RiftMCSurvival plugin;
     private ArrayList<Class> cmdClasses;
-    public StringsManager strings = StringsManager.getInstance();
-    public EXPHandler exphandler = EXPHandler.getInstance();
+    private StringsManager strings = StringsManager.getInstance();
+    private EXPHandler exphandler = EXPHandler.getInstance();
     private ListenersRegister listeners = ListenersRegister.getInstance();
     private CommandsManager<CommandSender> commands;
     public static HashMap<Player, String> expFlyToggle = new HashMap<>();
-    EXPHandler exph = EXPHandler.getInstance();
+    private EXPHandler exph = EXPHandler.getInstance();
 
     public RiftMCSurvival() {
     }
@@ -40,13 +40,12 @@ public class RiftMCSurvival extends JavaPlugin implements Listener {
     }
 
     public static void log(String message) {
-        System.out.println("[riftmcsurvival] " + message);
+        System.out.println("[RiftMCSurvival] " + message);
     }
 
 
     public void onEnable() {
         plugin = this;
-        this.plugin = plugin;
         registerCommandClass(Commands.class);
         registerCommandClass(EXPFlyCommands.class);
         registerCommands();
@@ -65,7 +64,6 @@ public class RiftMCSurvival extends JavaPlugin implements Listener {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 expFlyToggle.remove(p.getPlayer());
                 expFlyToggle.put(p.getPlayer(), "off");
-                exph.updateOnlineList();
             }
         }
     }

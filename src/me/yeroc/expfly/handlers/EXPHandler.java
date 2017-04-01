@@ -10,18 +10,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 /**
  * Created by Corey on 31/03/2017.
  */
 public class EXPHandler {
-    StringsManager strings = StringsManager.getInstance();
-    PermissionsManager perms = PermissionsManager.getInstance();
-    CoreysAPI api = CoreysAPI.getInstance();
+    private StringsManager strings = StringsManager.getInstance();
+    private PermissionsManager perms = PermissionsManager.getInstance();
+    private CoreysAPI api = CoreysAPI.getInstance();
     static EXPHandler instance = new EXPHandler();
-    public ArrayList<Player> onlineList = new ArrayList<Player>();
 
     private EXPHandler() {
     }
@@ -49,29 +45,11 @@ public class EXPHandler {
                     if (ap.hasPermission(perms.EXPFly_Use)) {
                         if (RiftMCSurvival.expFlyToggle.get(ap.getPlayer()).equalsIgnoreCase("on")) {
                             ap.setLevel(ap.getLevel() - 1);
+                            if (ap.getLevel() >= 1 && ap.getLevel() <= 5) {
+                                ActionBar.send(ap.getPlayer(), ChatColor.RED + "WARNING: LOW EXP!!");
+                            }
                             if (ap.getLevel() == 10) {
                                 ActionBar.send(ap.getPlayer(), ChatColor.RED + "WARNING: LOW EXP!!");
-                                return;
-                            }
-                            if (ap.getLevel() == 5) {
-                                ActionBar.send(ap.getPlayer(), ChatColor.RED + "WARNING: LOW EXP!!");
-                                return;
-                            }
-                            if (ap.getLevel() == 4) {
-                                ActionBar.send(ap.getPlayer(), ChatColor.RED + "WARNING: LOW EXP!!");
-                                return;
-                            }
-                            if (ap.getLevel() == 3) {
-                                ActionBar.send(ap.getPlayer(), ChatColor.RED + "WARNING: LOW EXP!!");
-                                return;
-                            }
-                            if (ap.getLevel() == 2) {
-                                ActionBar.send(ap.getPlayer(), ChatColor.RED + "WARNING: LOW EXP!!");
-                                return;
-                            }
-                            if (ap.getLevel() == 1) {
-                                ActionBar.send(ap.getPlayer(), ChatColor.RED + "WARNING: LOW EXP!!");
-                                return;
                             }
                             if (ap.getLevel() == 0) {
                                 ap.sendMessage(strings.defaultMsgs + ChatColor.RED + "EXP Flying has been disabled.");
@@ -83,7 +61,7 @@ public class EXPHandler {
 
                             return;
                         }
-                        if (RiftMCSurvival.expFlyToggle.get(ap.getPlayer()).equalsIgnoreCase(null)) {
+                        if (RiftMCSurvival.expFlyToggle.get(ap.getPlayer()) == null) {
                             RiftMCSurvival.expFlyToggle.remove(ap.getPlayer());
                             RiftMCSurvival.expFlyToggle.put(ap.getPlayer(), "off");
                         }
@@ -92,16 +70,5 @@ public class EXPHandler {
                 }
             }
         }, 20L, 20L);
-    }
-
-    public void updateOnlineList() {
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            if (onlineList == null) {
-                onlineList.add(p.getPlayer());
-            } else {
-                onlineList.clear();
-                onlineList.add(p.getPlayer());
-            }
-        }
     }
 }
