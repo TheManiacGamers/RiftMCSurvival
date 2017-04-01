@@ -20,6 +20,7 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
+        RiftMCSurvival.expFlyToggle.remove(p.getPlayer());
         RiftMCSurvival.expFlyToggle.put(p.getPlayer(), "off");
     }
 }

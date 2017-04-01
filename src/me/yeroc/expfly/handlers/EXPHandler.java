@@ -41,7 +41,7 @@ public class EXPHandler {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(RiftMCSurvival.plugin, new BukkitRunnable() {
             @Override
             public void run() {
-                for (Player ap : Bukkit._INVALID_getOnlinePlayers()) {
+                for (Player ap : Bukkit.getOnlinePlayers()) {
                     if (ap.hasPermission(perms.EXPFly_Use)) {
                         if (RiftMCSurvival.expFlyToggle.get(ap.getPlayer()).equalsIgnoreCase("on")) {
                             ap.setLevel(ap.getLevel() - 1);
